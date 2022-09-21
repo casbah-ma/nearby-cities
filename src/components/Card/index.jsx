@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
+import Carousel from "../Carousel";
 import { DistanceIcon, MapIcon } from "../Icons";
 import {
   CardContainer,
@@ -13,19 +14,11 @@ import {
 } from "./Card.styles";
 
 function Card({ size, title, images, t, location }) {
+  console.log("images I", images);
   return (
     <CardContainer size={size}>
       <CardImage size={size}>
-        <img
-          src="https://source.unsplash.com/random/?sexy"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderTopLeftRadius: "10px",
-            borderTopRightRadius: "10px",
-          }}
-        />
+        <Carousel images={images} />
       </CardImage>
       <CardContent>
         <CardTitle>{title}</CardTitle>

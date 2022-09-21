@@ -1,19 +1,17 @@
 import tw, { styled } from "twin.macro";
 
 export const CardContainer = styled.section(({ size, theme }) => [
-  tw`md:w-[34.875rem] flex flex-col items-center justify-between rounded-xl  bg-white shadow-[2px 4px 48px rgba(0, 0, 0, 0.1)]  hover:scale-105 transition-transform duration-500 ease-out`,
-  size === "sm" && tw`h-[30.625rem]`,
+  tw`w-[34.875rem] h-[30.625rem] flex flex-col items-center justify-between rounded-xl  bg-white shadow-[2px 4px 48px rgba(0, 0, 0, 0.1)]  hover:scale-105 transition-transform duration-500 ease-out`,
   size === "lg" && tw`h-[36.875rem]`,
 ]);
 
 export const CardImage = styled.section(({ size }) => [
-  tw`w-full h-[20.125rem] object-cover bg-cover rounded-t-xl`,
-  size === "sm" && tw`h-[20.125rem]`,
+  tw`w-full h-[20.125rem] rounded-t-xl`,
   size === "lg" && tw`h-[26.375rem]`,
 ]);
 
 export const CardContent = styled.section(({}) => [
-  tw`w-full h-full flex flex-col items-start justify-around p-9 gap-2 relative`,
+  tw`w-full flex-1 flex flex-col items-start justify-around p-9 gap-2 relative`,
 ]);
 
 export const CardTitle = styled.h2(({ theme }) => [
@@ -28,7 +26,7 @@ export const CardActions = styled.div(({ theme }) => [
 ]);
 
 export const CardDescription = styled.p(({ theme }) => [
-  tw`flex items-center justify-center  text-center self-end  gap-2`,
+  tw` flex items-center justify-center  text-center self-end  gap-2`,
   //   `font-family: ${theme.fontFamily.primary}`,
 ]);
 export const CardLink = styled.a(({ theme }) => [
