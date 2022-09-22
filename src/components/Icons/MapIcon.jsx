@@ -3,6 +3,8 @@
 const MapIcon = ({ width, height, color, className, style }) => {
   return (
     <svg
+      className={className}
+      style={style}
       width={width || "20"}
       height={height || "22"}
       viewBox="0 0 20 22"

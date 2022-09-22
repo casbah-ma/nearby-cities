@@ -14,7 +14,6 @@ import {
 } from "./Card.styles";
 
 function Card({ size, title, images, t, location }) {
-  console.log("images I", images);
   return (
     <CardContainer size={size}>
       <CardImage size={size}>

@@ -5,7 +5,12 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        spectral: ["Spectral", "sans"],
+        popping: ["Poppins", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
