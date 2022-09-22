@@ -33,7 +33,7 @@ export const CardLink = styled.a(({ theme }) => [
   //   `font-family: ${theme.fontFamily.secondary}`,
 ]);
 
-export const CardButton = styled.button(({ theme }) => [
+export const CardButton = styled.div(({ theme }) => [
   tw`w-[6.875rem] h-12 px-6 py-3  text-center rounded-full absolute -top-6 left-9 bg-red-200`,
   //   `font-family: ${theme.fontFamily.primary}`,
 ]);

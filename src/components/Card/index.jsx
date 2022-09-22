@@ -13,7 +13,7 @@ import {
   CardButton,
 } from "./Card.styles";
 
-function Card({ size, title, images, t, location }) {
+function Card({ size, title, distance, images, step, t, location }) {
   return (
     <CardContainer size={size}>
       <CardImage size={size}>
@@ -24,14 +24,14 @@ function Card({ size, title, images, t, location }) {
         <CardActions>
           <CardDescription>
             <DistanceIcon />
-            Get Derection
+            Distance: {distance}
           </CardDescription>
           <CardLink>
             Get Derection
             <MapIcon />
           </CardLink>
         </CardActions>
-        <CardButton>Step 1</CardButton>
+        <CardButton>{step}</CardButton>
       </CardContent>
     </CardContainer>
   );

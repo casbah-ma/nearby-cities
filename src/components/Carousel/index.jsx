@@ -14,11 +14,11 @@ function Carousel({ images, auto }) {
   const autoSlide = useMemo(() => {
     if (auto) {
       const interval = setInterval(() => {
-        setCurrent((current + 1) % length);
-      }, 6000);
+        setCurrent(current === length - 1 ? 0 : current + 1);
+      }, 3000);
       return () => clearInterval(interval);
     }
-  }, [auto, current, length]);
+  }, [current, auto, length]);
 
   const ActiveDot = () => {
     return (
@@ -39,7 +39,7 @@ function Carousel({ images, auto }) {
       <ActiveDot />
       {images.map(
         (image, index) =>
-          index === current && <CarouselImage key={index} src={image} />
+          index === current && <CarouselImage key={index} src={image.url} />
       )}
     </CarouselContainer>
   );
