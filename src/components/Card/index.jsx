@@ -1,4 +1,3 @@
-import Image from "next/image";
 import PropTypes from "prop-types";
 import Carousel from "../Carousel";
 import { DistanceIcon, MapIcon } from "../Icons";
