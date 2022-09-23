@@ -1,19 +1,35 @@
 {
   "name": "nearbycities",
   "version": "0.1.0",
-  "private": true,
+  "babelMacros": {
+    "twin": {
+      "config": "./tailwind.config.js",
+      "preset": "styled-components"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "pub": "rollup -c rollup.config.js"
   },
   "dependencies": {
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@storybook/addon-postcss": "^2.0.0",
+    "babel-plugin-macros": "^3.1.0",
+    "geolib": "^3.3.3",
     "next": "12.3.1",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
     "styled-components": "^5.3.5",
     "twin.macro": "^2.8.2"
   },

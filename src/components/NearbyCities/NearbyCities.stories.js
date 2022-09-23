@@ -1,9 +1,13 @@
-import React from "react";
-const NearbyCities = React.lazy(() => import("../components/NearbyCities"));
-const Provider = React.lazy(() => import("../components/Provider"));
-import theme from "../../theme";
+import NearbyCities from ".";
 
-const props = {
+export default {
+  title: "Sections/NearbyCities",
+  component: NearbyCities,
+};
+
+const Template = (args) => <NearbyCities {...args} />;
+export const Default = Template.bind({});
+Default.args = {
   APIURL:
     "https://api.visittanger.com/cache/places?tags_search=histoire,balneaire,nature&cities_filter=tanger",
   title: "One step away to explore your desired city",
@@ -12,11 +16,3 @@ const props = {
   latitude: 35.775781158640214,
   longitude: -5.796029414390299,
 };
-
-export default function Home() {
-  return (
-    <Provider theme={theme}>
-      <NearbyCities {...props} />;
-    </Provider>
-  );
-}
