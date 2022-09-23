@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   CarouselContainer,
   CarouselDots,
@@ -11,7 +11,7 @@ function Carousel({ images, auto }) {
   const [current, setCurrent] = useState(0);
   const length = images.length;
 
-  const autoSlide = useMemo(() => {
+  useEffect(() => {
     if (auto) {
       const interval = setInterval(() => {
         setCurrent(current === length - 1 ? 0 : current + 1);

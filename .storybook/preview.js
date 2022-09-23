@@ -1,7 +1,7 @@
 import GlobalStyles from "../src/styles/GlobalStyles";
 import * as NextImage from "next/image";
 import "../src/styles/globals.css";
-import UIProvider from "../src/context/Provider";
+import Provider from "../src/components/Provider";
 
 const OriginalNextImage = NextImage.default;
 
@@ -22,9 +22,9 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <UIProvider>
+    <Provider>
       <GlobalStyles />
       <Story />
-    </UIProvider>
+    </Provider>
   ),
 ];

@@ -8,7 +8,7 @@ const RefreshIcon = ({ width, height, color, className, style }) => {
       width={width || "17"}
       height={height || "14"}
       viewBox="0 0 17 14"
-      fill={color || "none"}
+      fill={"none"}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

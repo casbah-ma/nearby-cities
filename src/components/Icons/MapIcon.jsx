@@ -8,7 +8,7 @@ const MapIcon = ({ width, height, color, className, style }) => {
       width={width || "20"}
       height={height || "22"}
       viewBox="0 0 20 22"
-      fill={color || "none"}
+      fill={"none"}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

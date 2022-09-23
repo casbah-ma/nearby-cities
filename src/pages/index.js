@@ -1,5 +1,7 @@
 import React from "react";
 const NearbyCities = React.lazy(() => import("../components/NearbyCities"));
+const Provider = React.lazy(() => import("../components/Provider"));
+import theme from "../../theme";
 
 const props = {
   APIURL:
@@ -12,5 +14,9 @@ const props = {
 };
 
 export default function Home() {
-  return <NearbyCities {...props} />;
+  return (
+    <Provider theme={theme}>
+      <NearbyCities {...props} />;
+    </Provider>
+  );
 }

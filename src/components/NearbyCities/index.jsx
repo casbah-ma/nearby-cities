@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+//Styled Components
 import {
   NearbyCitiesContainer,
   NearbyCitiesTitle,
@@ -8,13 +9,22 @@ import {
   NearbyCitiesList,
   NearbyCitiesListItem,
 } from "./NearbyCities.styles";
+// Components
 import Card from "../Card";
 import RefreshIcon from "../Icons/RefreshIcon";
 import { useEffect, useState } from "react";
 import { getSafe, shuffle } from "../../helpers";
 import { getDistance } from "geolib";
+import Provider from "../Provider";
 
-function NearbyCities({ title, description, latitude, longitude, APIURL }) {
+function NearbyCities({
+  theme,
+  title,
+  description,
+  latitude,
+  longitude,
+  APIURL,
+}) {
   const [shuffleData, setShuffle] = useState([]);
 
   // fetch data from API
@@ -48,30 +58,33 @@ function NearbyCities({ title, description, latitude, longitude, APIURL }) {
   };
 
   return (
-    <NearbyCitiesContainer>
-      <NearbyCitiesHeader>
-        <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
-        <NearbyCitiesDescription>{description}</NearbyCitiesDescription>
-        <NearbyCitiesButton onClick={handleRefresh}>
-          Refresh <RefreshIcon />
-        </NearbyCitiesButton>
-      </NearbyCitiesHeader>
-      <NearbyCitiesList>
-        {shuffleData.length !== 0 &&
-          shuffleData.slice(0, 4).map((item, i) => (
-            <NearbyCitiesListItem key={i}>
-              <Card
-                size={i === 1 || i === 2 ? "lg" : "sm"}
-                step={`Step ${i + 1}`}
-                title={item.title.en}
-                images={item.media}
-                distance={item.distance}
-                location={item.locationUrl}
-              />
-            </NearbyCitiesListItem>
-          ))}
-      </NearbyCitiesList>
-    </NearbyCitiesContainer>
+    <Provider theme={theme}>
+      <NearbyCitiesContainer>
+        <NearbyCitiesHeader>
+          <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
+          <NearbyCitiesDescription>{description}</NearbyCitiesDescription>
+          <NearbyCitiesButton onClick={handleRefresh}>
+            Refresh <RefreshIcon color={theme?.colors?.text?.secondary} />
+          </NearbyCitiesButton>
+        </NearbyCitiesHeader>
+        <NearbyCitiesList>
+          {shuffleData.length !== 0 &&
+            shuffleData.slice(0, 4).map((item, i) => (
+              <NearbyCitiesListItem key={i}>
+                <Card
+                  theme={theme}
+                  size={i === 1 || i === 2 ? "lg" : "sm"}
+                  step={`Step ${i + 1}`}
+                  title={item.title.en}
+                  images={item.media}
+                  distance={item.distance}
+                  location={item.locationUrl}
+                />
+              </NearbyCitiesListItem>
+            ))}
+        </NearbyCitiesList>
+      </NearbyCitiesContainer>
+    </Provider>
   );
 }
 

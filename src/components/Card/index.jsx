@@ -13,11 +13,11 @@ import {
   CardButton,
 } from "./Card.styles";
 
-function Card({ size, title, distance, images, step, t, location }) {
+function Card({ theme, size, title, distance, images, step, t, location }) {
   return (
     <CardContainer size={size}>
       <CardImage size={size}>
-        <Carousel images={images} />
+        <Carousel images={images} auto />
       </CardImage>
       <CardContent>
         <CardTitle>{title}</CardTitle>
@@ -28,7 +28,7 @@ function Card({ size, title, distance, images, step, t, location }) {
           </CardDescription>
           <CardLink target="_blank" href={location}>
             Get Derection
-            <MapIcon />
+            <MapIcon color={theme?.colors?.bg?.primary} />
           </CardLink>
         </CardActions>
         <CardButton>{step}</CardButton>
