@@ -1,15 +1,12 @@
-import path from "path";
 import { babel } from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
-import alias from "@rollup/plugin-alias";
-import json from "@rollup/plugin-json";
 
 export default {
   input: {
-    index: "src/components/index.js",
+    index: "src/components/NearbyCities",
   },
   output: [
     {
@@ -20,10 +17,6 @@ export default {
     },
   ],
   plugins: [
-    alias({
-      resolve: [".js", ".jsx"],
-    }),
-    json(),
     resolve({
       extensions: [".js", ".jsx", ".ts", ".tsx"],
     }),
@@ -41,4 +34,5 @@ export default {
     }),
     terser(),
   ],
+  external: ["react", "react-dom"],
 };

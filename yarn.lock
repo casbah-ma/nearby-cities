@@ -1551,13 +1551,6 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@rollup/plugin-alias@^3.1.9":
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.9.tgz#a5d267548fe48441f34be8323fb64d1d4a1b3fdf"
-  integrity sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==
-  dependencies:
-    slash "^3.0.0"
-
 "@rollup/plugin-babel@^5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz#04bc0608f4aa4b2e4b1aebf284344d0f68fda283"
@@ -1579,13 +1572,6 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
-"@rollup/plugin-json@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
-  integrity sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
-  dependencies:
-    "@rollup/pluginutils" "^3.0.8"
-
 "@rollup/plugin-node-resolve@^14.1.0":
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-14.1.0.tgz#f2fa475405cd7fed6420bf438fe393f988a9bc96"
@@ -1598,7 +1584,7 @@
     is-module "^1.0.0"
     resolve "^1.19.0"
 
-"@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
+"@rollup/pluginutils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
   integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
