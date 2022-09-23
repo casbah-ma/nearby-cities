@@ -15,10 +15,10 @@ function Carousel({ images, auto }) {
     if (auto) {
       const interval = setInterval(() => {
         setCurrent(current === length - 1 ? 0 : current + 1);
-      }, 3000);
+      }, 5000);
       return () => clearInterval(interval);
     }
-  }, [current, auto, length]);
+  }, [current]);
 
   const ActiveDot = () => {
     return (
@@ -37,14 +37,18 @@ function Carousel({ images, auto }) {
   return (
     <CarouselContainer>
       <ActiveDot />
-      {images.map(
-        (image, index) =>
-          index === current && <CarouselImage key={index} src={image.url} />
-      )}
+      {images.length > 0 &&
+        images.map(
+          (image, index) =>
+            index === current && <CarouselImage key={index} src={image.url} />
+        )}
     </CarouselContainer>
   );
 }
 
-Carousel.propTypes = {};
+Carousel.propTypes = {
+  images: PropTypes.array,
+  auto: PropTypes.bool,
+};
 
 export default Carousel;

@@ -14,10 +14,7 @@ import { useEffect, useState } from "react";
 import { getSafe, shuffle } from "../../helpers";
 import { getDistance } from "geolib";
 
-function NearbyCities({ latitude, longitude }) {
-  //   const APIURL = `https://api.site.com/places?latitude=${latitude}&longitude=${longitude}`;
-  const APIURL = `https://api.visittanger.com/cache/places?tags_search=histoire,balneaire,nature&cities_filter=tanger`;
-  const [results, setResults] = useState([]);
+function NearbyCities({ title, description, latitude, longitude, APIURL }) {
   const [shuffleData, setShuffle] = useState([]);
 
   // fetch data from API
@@ -34,10 +31,10 @@ function NearbyCities({ latitude, longitude }) {
             return {
               ...item,
               distance: distanceInKm ? distanceInKm + "km" : "0km",
+              locationUrl: `https://www.google.com/maps/search/?api=1&query=${item.location.coordinates[1]},${item.location.coordinates[0]}`,
             };
           });
           setShuffle(shuffle(DistanceFromHotel));
-          setResults(DistanceFromHotel);
         }
       })
       .catch((error) => {
@@ -45,10 +42,7 @@ function NearbyCities({ latitude, longitude }) {
       });
   }, [APIURL]);
 
-  useEffect(() => {
-    console.log(shuffleData);
-  }, [shuffleData]);
-
+  // get random data from API
   const handleRefresh = () => {
     setShuffle([...shuffle(shuffleData)]);
   };
@@ -56,36 +50,37 @@ function NearbyCities({ latitude, longitude }) {
   return (
     <NearbyCitiesContainer>
       <NearbyCitiesHeader>
-        <NearbyCitiesTitle>
-          One step away to explore your desired city
-        </NearbyCitiesTitle>
-        <NearbyCitiesDescription>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud Lorem ipsum dolor sit. ut labore et dolore
-          magna
-        </NearbyCitiesDescription>
+        <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
+        <NearbyCitiesDescription>{description}</NearbyCitiesDescription>
         <NearbyCitiesButton onClick={handleRefresh}>
           Refresh <RefreshIcon />
         </NearbyCitiesButton>
       </NearbyCitiesHeader>
       <NearbyCitiesList>
-        {shuffleData.slice(0, 4).map((item, i) => (
-          <NearbyCitiesListItem key={i}>
-            <Card
-              size={(i === 1 || i === 2) && "lg"}
-              step={`Step ${i + 1}`}
-              title={item.title.en}
-              images={item.media}
-              distance={item.distance}
-            />
-          </NearbyCitiesListItem>
-        ))}
+        {shuffleData.length !== 0 &&
+          shuffleData.slice(0, 4).map((item, i) => (
+            <NearbyCitiesListItem key={i}>
+              <Card
+                size={i === 1 || i === 2 ? "lg" : "sm"}
+                step={`Step ${i + 1}`}
+                title={item.title.en}
+                images={item.media}
+                distance={item.distance}
+                location={item.locationUrl}
+              />
+            </NearbyCitiesListItem>
+          ))}
       </NearbyCitiesList>
     </NearbyCitiesContainer>
   );
 }
 
-NearbyCities.propTypes = {};
+NearbyCities.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  APIURL: PropTypes.string,
+};
 
 export default NearbyCities;

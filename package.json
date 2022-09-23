@@ -17,11 +17,7 @@
     "pub": "rollup -c rollup.config.js"
   },
   "dependencies": {
-    "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^14.1.0",
+    "babel-plugin-macros": "^3.1.0",
     "geolib": "^3.3.3",
     "next": "12.3.1",
     "prop-types": "^15.8.1",

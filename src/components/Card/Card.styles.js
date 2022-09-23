@@ -1,13 +1,13 @@
 import tw, { styled } from "twin.macro";
 
 export const CardContainer = styled.section(({ size, theme }) => [
-  tw`w-[34.875rem] h-[30.625rem] flex flex-col items-center justify-between rounded-xl  bg-white shadow-[2px 4px 48px rgba(0, 0, 0, 0.1)]  hover:scale-105 transition-transform duration-500 ease-out`,
-  size === "lg" && tw`h-[36.875rem]`,
+  tw`md:w-[22rem] lg:w-[34.875rem]  h-full lg:h-[30.625rem] flex flex-col items-center justify-between rounded-xl  bg-white shadow-[2px 4px 48px rgba(0, 0, 0, 0.1)]  hover:scale-105 transition-transform duration-500 ease-out`,
+  size === "lg" && tw`lg:h-[36.875rem]`,
 ]);
 
 export const CardImage = styled.section(({ size }) => [
   tw`w-full h-[20.125rem] rounded-t-xl`,
-  size === "lg" && tw`h-[26.375rem]`,
+  size === "lg" && tw`lg:h-[26.375rem]`,
 ]);
 
 export const CardContent = styled.section(({}) => [
@@ -20,12 +20,12 @@ export const CardTitle = styled.h2(({ theme }) => [
 ]);
 
 export const CardActions = styled.div(({ theme }) => [
-  tw`w-full flex items-start justify-between  p-0`,
+  tw`w-full flex flex-col gap-4 lg:flex-row items-start justify-between p-0 mt-5 lg:mt-0`,
   //   `font-family: ${theme.fontFamily.secondary}`,
 ]);
 
 export const CardDescription = styled.p(({ theme }) => [
-  tw` flex items-center justify-center  text-center self-end  gap-2`,
+  tw` flex items-center justify-center  text-center lg:self-end  gap-2`,
   //   `font-family: ${theme.fontFamily.primary}`,
 ]);
 export const CardLink = styled.a(({ theme }) => [
