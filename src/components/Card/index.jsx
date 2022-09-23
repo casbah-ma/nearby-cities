@@ -1,5 +1,6 @@
+import React from "react";
 import PropTypes from "prop-types";
-import Carousel from "../Carousel";
+const Carousel = React.lazy(() => import("../Carousel"));
 import { DistanceIcon, MapIcon } from "../Icons";
 import {
   CardContainer,
@@ -25,7 +26,7 @@ function Card({ size, title, distance, images, step, t, location }) {
             <DistanceIcon />
             Distance: {distance}
           </CardDescription>
-          <CardLink>
+          <CardLink target="_blank" href={location}>
             Get Derection
             <MapIcon />
           </CardLink>
@@ -36,6 +37,14 @@ function Card({ size, title, distance, images, step, t, location }) {
   );
 }
 
-Card.propTypes = {};
+Card.propTypes = {
+  size: PropTypes.string,
+  title: PropTypes.string,
+  distance: PropTypes.string,
+  images: PropTypes.array,
+  step: PropTypes.string,
+  t: PropTypes.func,
+  location: PropTypes.string,
+};
 
 export default Card;

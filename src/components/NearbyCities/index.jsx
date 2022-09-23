@@ -15,7 +15,6 @@ import { getSafe, shuffle } from "../../helpers";
 import { getDistance } from "geolib";
 
 function NearbyCities({ title, description, latitude, longitude, APIURL }) {
-  const [results, setResults] = useState([]);
   const [shuffleData, setShuffle] = useState([]);
 
   // fetch data from API
@@ -32,10 +31,10 @@ function NearbyCities({ title, description, latitude, longitude, APIURL }) {
             return {
               ...item,
               distance: distanceInKm ? distanceInKm + "km" : "0km",
+              locationUrl: `https://www.google.com/maps/search/?api=1&query=${item.location.coordinates[1]},${item.location.coordinates[0]}`,
             };
           });
           setShuffle(shuffle(DistanceFromHotel));
-          setResults(DistanceFromHotel);
         }
       })
       .catch((error) => {
@@ -43,10 +42,7 @@ function NearbyCities({ title, description, latitude, longitude, APIURL }) {
       });
   }, [APIURL]);
 
-  useEffect(() => {
-    console.log(shuffleData);
-  }, [shuffleData]);
-
+  // get random data from API
   const handleRefresh = () => {
     setShuffle([...shuffle(shuffleData)]);
   };
@@ -61,22 +57,30 @@ function NearbyCities({ title, description, latitude, longitude, APIURL }) {
         </NearbyCitiesButton>
       </NearbyCitiesHeader>
       <NearbyCitiesList>
-        {shuffleData.slice(0, 4).map((item, i) => (
-          <NearbyCitiesListItem key={i}>
-            <Card
-              size={(i === 1 || i === 2) && "lg"}
-              step={`Step ${i + 1}`}
-              title={item.title.en}
-              images={item.media}
-              distance={item.distance}
-            />
-          </NearbyCitiesListItem>
-        ))}
+        {shuffleData.length !== 0 &&
+          shuffleData.slice(0, 4).map((item, i) => (
+            <NearbyCitiesListItem key={i}>
+              <Card
+                size={i === 1 || i === 2 ? "lg" : "sm"}
+                step={`Step ${i + 1}`}
+                title={item.title.en}
+                images={item.media}
+                distance={item.distance}
+                location={item.locationUrl}
+              />
+            </NearbyCitiesListItem>
+          ))}
       </NearbyCitiesList>
     </NearbyCitiesContainer>
   );
 }
 
-NearbyCities.propTypes = {};
+NearbyCities.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  APIURL: PropTypes.string,
+};
 
 export default NearbyCities;

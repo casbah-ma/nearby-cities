@@ -1,4 +1,5 @@
-import NearbyCities from "../components/NearbyCities";
+import React from "react";
+const NearbyCities = React.lazy(() => import("../components/NearbyCities"));
 
 const props = {
   APIURL:
