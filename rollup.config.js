@@ -28,7 +28,10 @@ export default {
       presets: [["next/babel", { "preset-react": { runtime: "automatic" } }]],
     }),
     copy({
-      targets: [{ src: "package.json", dest: "dist" }],
+      targets: [
+        { src: "package.json", dest: "dist" },
+        { src: "README.md", dest: "dist" },
+      ],
     }),
     postcss({
       config: {
