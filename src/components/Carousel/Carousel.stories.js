@@ -9,8 +9,8 @@ const Template = (args) => <Carousel {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   images: [
-    "https://source.unsplash.com/random/?night",
-    "https://source.unsplash.com/random/?city",
-    "https://source.unsplash.com/random/?street",
+    { url: "https://source.unsplash.com/random/?country" },
+    { url: "https://source.unsplash.com/random/?city" },
+    { url: "https://source.unsplash.com/random/?street" },
   ],
 };

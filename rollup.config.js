@@ -3,6 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
+import copy from "rollup-plugin-copy";
 
 export default {
   input: {
@@ -25,6 +26,9 @@ export default {
       babelHelpers: "runtime",
       exclude: ["node_modules/**", "**/*.stories.js", "**/*.test.js"],
       presets: [["next/babel", { "preset-react": { runtime: "automatic" } }]],
+    }),
+    copy({
+      targets: [{ src: "package.json", dest: "dist" }],
     }),
     postcss({
       config: {
