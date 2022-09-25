@@ -59,7 +59,7 @@ function NearbyCities({
 
   return (
     <Provider theme={theme}>
-      <NearbyCitiesContainer>
+      <NearbyCitiesContainer data-testid="NearbyCities">
         <NearbyCitiesHeader>
           <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
           <NearbyCitiesDescription>{description}</NearbyCitiesDescription>

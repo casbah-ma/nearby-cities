@@ -17,27 +17,27 @@ export const CardContent = styled.section(({}) => [
 
 export const CardTitle = styled.h2(({ theme }) => [
   tw`text-2xl font-bold`,
-  `font-family: ${theme.fontFamily.primary}`,
+  `font-family: ${theme?.fontFamily?.primary}`,
 ]);
 
 export const CardActions = tw.div`w-full flex flex-col gap-4 lg:flex-row items-start justify-between p-0 mt-5 lg:mt-0`;
 
 export const CardDescription = styled.p(({ theme }) => [
   tw` flex items-center justify-center  text-center lg:self-end  gap-2`,
-  `font-family: ${theme.fontFamily.secondary};
+  `font-family: ${theme?.fontFamily?.secondary};
  `,
 ]);
 export const CardLink = styled.a(({ theme }) => [
   tw`flex items-center justify-center  text-center self-end cursor-pointer  gap-2`,
-  `font-family: ${theme.fontFamily.secondary};
-   color: ${theme.colors.bg.primary};
+  `font-family: ${theme?.fontFamily?.secondary};
+   color: ${theme?.colors?.bg?.primary};
   `,
 ]);
 
 export const CardButton = styled.div(({ theme }) => [
   tw`w-[6.875rem] h-12 px-6 py-3  text-center rounded-full absolute -top-6 left-9 bg-red-200`,
-  `font-family: ${theme.fontFamily.secondary};
-    color: ${theme.colors.text.secondary};
-   background: ${theme.colors.bg.primary};
+  `font-family: ${theme?.fontFamily?.secondary};
+    color: ${theme?.colors?.text?.secondary};
+   background: ${theme?.colors?.bg?.primary};
   `,
 ]);

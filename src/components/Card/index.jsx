@@ -15,7 +15,7 @@ import {
 
 function Card({ theme, size, title, distance, images, step, t, location }) {
   return (
-    <CardContainer size={size}>
+    <CardContainer size={size} data-testid="card">
       <CardImage size={size}>
         <Carousel images={images} auto />
       </CardImage>
