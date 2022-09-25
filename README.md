@@ -22,9 +22,9 @@ yarn add @casbah-ma/nearbycities
 
 ## How to use
 
-You can import thos component like this:
+You can import `NearbyCities` component:
 
-```
+```js
 import NearbyCities from '@casbah-ma/nearbycities';
 ```
 
@@ -44,5 +44,7 @@ return (
 ```
 
 ## Preview
+
+<img width="1023" alt="Screen Shot 2022-09-23 at 2 35 08 PM" src="https://user-images.githubusercontent.com/37486496/192147266-c62c0e96-1b83-4a38-9f85-a6de8e4f3325.png">
 
 
