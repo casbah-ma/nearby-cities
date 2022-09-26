@@ -12,7 +12,9 @@ Small.args = {
   size: "sm",
   title: "Small Card",
   distance: "1.5 km",
+  distanceLabel: "Distance",
   step: "Step 1",
+  linkLabel: "Get Direction",
   location:
     "https://www.google.com/maps/search/?api=1&query=35.775781158640214,-5.796029414390299",
   images: [

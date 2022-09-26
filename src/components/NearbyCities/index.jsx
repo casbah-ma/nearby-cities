@@ -23,10 +23,20 @@ function NearbyCities({
   description,
   latitude,
   longitude,
+  linkLabel,
+  distanceLabel,
   APIURL,
 }) {
   const [shuffleData, setShuffle] = useState([]);
 
+  // Sort the data by distance
+  const sortData = (data) => {
+    const sortedData = data.sort((a, b) => {
+      return a.distance - b.distance;
+    });
+    console.log(sortedData);
+    return sortedData;
+  };
   // fetch data from API
   useEffect(() => {
     fetch(APIURL)
@@ -40,7 +50,7 @@ function NearbyCities({
             const distanceInKm = distance / 1000;
             return {
               ...item,
-              distance: distanceInKm ? distanceInKm + "km" : "0km",
+              distance: distanceInKm ? distanceInKm : "0",
               locationUrl: `https://www.google.com/maps/search/?api=1&query=${item.location.coordinates[1]},${item.location.coordinates[0]}`,
             };
           });
@@ -69,7 +79,7 @@ function NearbyCities({
         </NearbyCitiesHeader>
         <NearbyCitiesList>
           {shuffleData.length !== 0 &&
-            shuffleData.slice(0, 4).map((item, i) => (
+            sortData(shuffleData.slice(0, 4)).map((item, i) => (
               <NearbyCitiesListItem key={i}>
                 <Card
                   theme={theme}
@@ -78,6 +88,8 @@ function NearbyCities({
                   title={item.title.en}
                   images={item.media}
                   distance={item.distance}
+                  distanceLabel={distanceLabel}
+                  linkLabel={linkLabel}
                   location={item.locationUrl}
                 />
               </NearbyCitiesListItem>

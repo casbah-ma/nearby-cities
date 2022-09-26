@@ -13,7 +13,17 @@ import {
   CardButton,
 } from "./Card.styles";
 
-function Card({ theme, size, title, distance, images, step, t, location }) {
+function Card({
+  theme,
+  size,
+  title,
+  distance,
+  images,
+  step,
+  distanceLabel,
+  linkLabel,
+  location,
+}) {
   return (
     <CardContainer size={size} data-testid="card">
       <CardImage size={size}>
@@ -24,10 +34,10 @@ function Card({ theme, size, title, distance, images, step, t, location }) {
         <CardActions>
           <CardDescription>
             <DistanceIcon />
-            Distance: {distance}
+            {distanceLabel}: {`${distance}km`}
           </CardDescription>
           <CardLink target="_blank" href={location}>
-            Get Derection
+            {linkLabel}
             <MapIcon color={theme?.colors?.bg?.primary} />
           </CardLink>
         </CardActions>
