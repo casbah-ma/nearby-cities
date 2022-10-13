@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   CarouselContainer,
   CarouselDots,
