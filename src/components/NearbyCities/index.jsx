@@ -74,7 +74,7 @@ function NearbyCities({
           <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
           <NearbyCitiesDescription>{description}</NearbyCitiesDescription>
           <NearbyCitiesButton onClick={handleRefresh}>
-            Refresh <RefreshIcon color={theme?.colors?.text?.secondary} />
+            Refresh <RefreshIcon color={"#fff"} />
           </NearbyCitiesButton>
         </NearbyCitiesHeader>
         <NearbyCitiesList>

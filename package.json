@@ -1,6 +1,6 @@
 {
   "name": "@casbah-ma/nearbycities",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "babelMacros": {
     "twin": {
       "config": "./tailwind.config.js",
