@@ -27,11 +27,12 @@ export const CardDescription = styled.p(({ theme }) => [
   `font-family: ${theme?.fontFamily?.secondary};
  `,
 ]);
-export const CardLink = styled.a(({ theme }) => [
+export const CardLink = styled.a(({ theme, disabled }) => [
   tw`flex items-center justify-center  text-center self-end cursor-pointer  gap-2`,
   `font-family: ${theme?.fontFamily?.secondary};
    color: ${theme?.colors?.bg?.primary};
   `,
+  disabled && tw`cursor-not-allowed text-gray-400` ,
 ]);
 
 export const CardButton = styled.div(({ theme }) => [
