@@ -53,10 +53,10 @@ function NearbyCities({
             const distanceInKm = distance / 1000;
             return {
               ...item,
-              distance: distanceInKm ? distanceInKm + "km" : "?km",
+              distance: distanceInKm ? distanceInKm  : "?",
               locationUrl: item?.coordinates && `https://www.google.com/maps/search/?api=1&query=${item?.coordinates[0]?.lat},${item?.coordinates[0]?.lon}`,
             };
-          });
+          }).filter(item => item.distance !== "?" && item.thumbnail && item.thumbnail.source);
           setShuffle(shuffle(DistanceFromHotel));
         }
       })
@@ -108,7 +108,6 @@ NearbyCities.propTypes = {
   description: PropTypes.string,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
-  APIURL: PropTypes.string,
 };
 
 export default NearbyCities;

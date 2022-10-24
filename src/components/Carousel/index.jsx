@@ -6,21 +6,9 @@ import {
   CarouselDot,
   CarouselImage,
 } from "./Carousel.styles";
-import no_image from "../../../public/no_image.jpeg"
 
-function Carousel({ image, auto }) {
-  // const [current, setCurrent] = useState(0);
-  // const length = images.length;
-
-  // useEffect(() => {
-  //   if (auto) {
-  //     const interval = setInterval(() => {
-  //       setCurrent(current === length - 1 ? 0 : current + 1);
-  //     }, 5000);
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [current]);
-
+function Carousel({ image }) {
+  
   const ActiveDot = () => {
     return (
       <CarouselDots>
@@ -32,7 +20,7 @@ function Carousel({ image, auto }) {
   return (
     <CarouselContainer>
       <ActiveDot />
-      <CarouselImage src={image?.source || no_image.src} />
+      <CarouselImage src={image?.source} />
     </CarouselContainer>
   );
 }
