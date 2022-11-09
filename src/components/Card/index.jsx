@@ -34,7 +34,7 @@ function Card({
         <CardActions>
           <CardDescription>
             <DistanceIcon />
-            {distanceLabel}: {`${distance}km`}
+            {distanceLabel}: {`${distance.toFixed(1)}km`}
           </CardDescription>
           <CardLink target="_blank" href={location}>
             {linkLabel}

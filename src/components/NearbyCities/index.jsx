@@ -80,7 +80,7 @@ function NearbyCities({
         <NearbyCitiesList>
           {shuffleData.length !== 0 &&
             sortData(shuffleData.slice(0, 4)).map((item, i) => (
-              <NearbyCitiesListItem key={i}>
+              <NearbyCitiesListItem key={i} index={i}>
                 <Card
                   theme={theme}
                   size={i === 1 || i === 2 ? "lg" : "sm"}
