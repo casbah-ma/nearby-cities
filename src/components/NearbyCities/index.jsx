@@ -25,35 +25,38 @@ function NearbyCities({
   longitude,
   linkLabel,
   distanceLabel,
-  APIURL,
 }) {
   const [shuffleData, setShuffle] = useState([]);
-
+  const APIURL = `https://en.wikipedia.org/w/api.php?action=query&generator=geosearch&ggsradius=10000&ggscoord=${latitude}|${longitude}&format=json&prop=coordinates|pageimages|description|info&pithumbsize=1000&ggslimit=100`
   // Sort the data by distance
   const sortData = (data) => {
     const sortedData = data.sort((a, b) => {
       return a.distance - b.distance;
     });
-    console.log(sortedData);
     return sortedData;
   };
   // fetch data from API
   useEffect(() => {
     fetch(APIURL)
       .then((response) => response.json())
-      .then(({ status, data }) => {
-        if (status === "success") {
-          const DistanceFromHotel = data.map((item, i) => {
+      .then(async ( {query} ) => {
+        let data = [];
+        for (let key in query.pages) {
+          data.push(query.pages[key]);
+        }
+
+        if (data.length > 0) {
+          const DistanceFromHotel =  data.map((item, i) => {
             const distance = getSafe(() =>
-              getDistance(item.location.coordinates, { latitude, longitude })
+              getDistance({latitude: item.coordinates[0].lat, longitude: item.coordinates[0].lon} , { latitude, longitude })
             );
             const distanceInKm = distance / 1000;
             return {
               ...item,
-              distance: distanceInKm ? distanceInKm : "0",
-              locationUrl: `https://www.google.com/maps/search/?api=1&query=${item.location.coordinates[1]},${item.location.coordinates[0]}`,
+              distance: distanceInKm ? distanceInKm  : "?",
+              locationUrl: item?.coordinates && `https://www.google.com/maps/search/?api=1&query=${item?.coordinates[0]?.lat},${item?.coordinates[0]?.lon}`,
             };
-          });
+          }).filter(item => item.distance !== "?" && item.thumbnail && item.thumbnail.source);
           setShuffle(shuffle(DistanceFromHotel));
         }
       })
@@ -85,8 +88,8 @@ function NearbyCities({
                   theme={theme}
                   size={i === 1 || i === 2 ? "lg" : "sm"}
                   step={`Step ${i + 1}`}
-                  title={item.title.en}
-                  images={item.media}
+                  title={item.title}
+                  image={item.thumbnail}
                   distance={item.distance}
                   distanceLabel={distanceLabel}
                   linkLabel={linkLabel}
@@ -105,7 +108,6 @@ NearbyCities.propTypes = {
   description: PropTypes.string,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
-  APIURL: PropTypes.string,
 };
 
 export default NearbyCities;

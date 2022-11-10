@@ -45,6 +45,7 @@ return (
 
 ## Preview
 
-<img width="1023" alt="Screen Shot 2022-09-23 at 2 35 08 PM" src="https://user-images.githubusercontent.com/37486496/192147266-c62c0e96-1b83-4a38-9f85-a6de8e4f3325.png">
+<img width="1216" alt="Screen Shot 2022-10-13 at 1 21 05 PM" src="https://user-images.githubusercontent.com/37486496/195594699-08156fb5-ecf0-4972-86cb-8425ccb27336.png">
+
 
 

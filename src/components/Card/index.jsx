@@ -18,7 +18,7 @@ function Card({
   size,
   title,
   distance,
-  images,
+  image,
   step,
   distanceLabel,
   linkLabel,
@@ -27,7 +27,7 @@ function Card({
   return (
     <CardContainer size={size} data-testid="card">
       <CardImage size={size}>
-        <Carousel images={images} auto />
+        <Carousel image={image} />
       </CardImage>
       <CardContent>
         <CardTitle>{title}</CardTitle>
@@ -36,9 +36,9 @@ function Card({
             <DistanceIcon />
             {distanceLabel}: {`${distance.toFixed(1)}km`}
           </CardDescription>
-          <CardLink target="_blank" href={location}>
+          <CardLink disabled={!location} target="_blank" href={location}>
             {linkLabel}
-            <MapIcon color={theme?.colors?.bg?.primary} />
+            <MapIcon color={!location ? "#9ca3af" : theme?.colors?.bg?.primary} />
           </CardLink>
         </CardActions>
         <CardButton>{step}</CardButton>
