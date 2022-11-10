@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { getSafe, shuffle } from "../../helpers";
 import { getDistance } from "geolib";
 import Provider from "../Provider";
+import { NoDataFound } from "../Lottiefiles";
 
 function NearbyCities({
   theme,
@@ -81,7 +82,7 @@ function NearbyCities({
           </NearbyCitiesButton>
         </NearbyCitiesHeader>
         <NearbyCitiesList>
-          {shuffleData.length !== 0 &&
+          {shuffleData.length !== 0 ?
             sortData(shuffleData.slice(0, 4)).map((item, i) => (
               <NearbyCitiesListItem key={i} index={i}>
                 <Card
@@ -96,7 +97,8 @@ function NearbyCities({
                   location={item.locationUrl}
                 />
               </NearbyCitiesListItem>
-            ))}
+            ))
+           : <NoDataFound />}
         </NearbyCitiesList>
       </NearbyCitiesContainer>
     </Provider>
