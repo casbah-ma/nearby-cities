@@ -41,5 +41,5 @@ export default {
     }),
     terser(),
   ],
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "@lottiefiles/react-lottie-player"],
 };

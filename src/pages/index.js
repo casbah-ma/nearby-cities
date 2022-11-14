@@ -11,12 +11,15 @@ const props = {
   longitude: -5.796029414390299,
   distanceLabel: "Distance",
   linkLabel: "Get Direction",
+  setpLabel: "Step",
+  nearbyButton: "Refresh"
+  
 };
 
 export default function Home() {
   return (
     <Provider theme={theme}>
-      <NearbyCities {...props} />;
+      <NearbyCities {...props} />
     </Provider>
   );
 }

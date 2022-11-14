@@ -14,15 +14,45 @@ export const NearbyCitiesDescription = styled.p(({ theme }) => [
   `,
 ]);
 export const NearbyCitiesButton = styled.button(({ theme }) => [
-  tw`w-full lg:w-[10.625rem] h-[3.75rem] rounded-full flex justify-center items-center gap-2  text-[20px] [text-transform: uppercase]  font-normal mt-4`,
+  tw`w-full lg:w-[10.625rem] h-[3.75rem] rounded-full flex justify-center items-center gap-2 uppercase text-[20px]   font-normal mt-4`,
   `font-family: ${theme.fontFamily.primary};
    background: ${theme.colors.bg.primary};
    color: ${theme.colors.text.secondary};
   `,
 ]);
 
-export const NearbyCitiesList = tw.div`grid grid-cols-1 grid-rows-4 md:grid-rows-2  grid-flow-col gap-8 `;
-export const NearbyCitiesListItem = styled.div`
-  ${tw`h-fit `}
-  ${(props) => props.index === 1 && tw`md:-mt-[100px]`}
-`;
+export const NearbyCitiesList = styled.div(({ theme }) => [
+  ` width: 100%;
+    height: 100%;
+    display: grid;
+    padding: 0;
+    grid-template-columns: 34.875rem 34.875rem;
+    grid-template-rows: 30.625rem 3.75rem 30.625rem;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    grid-template-areas:
+        "step1 step2"
+        "step3 step2"
+        "step3 step4";
+    @media (max-width: 1024px) {
+      grid-template-columns: 25rem 25rem !important;
+      align-items: unset;
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: 21rem 22rem !important;
+    }
+    @media (max-width: 425px) {
+      grid-template-columns: 100% !important;
+      grid-template-rows: 30.625rem 32.625rem 32.625rem 30.625rem !important;
+      grid-template-areas:
+        "step1"
+        "step2"
+        "step3"
+        "step4";
+    }
+  `,
+]);
+export const NearbyCitiesListItem = styled.div(({ gridAreas }) => [
+  `grid-area: ${gridAreas};`,
+]);
