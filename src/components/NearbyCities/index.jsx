@@ -26,7 +26,7 @@ function NearbyCities({
   longitude,
   linkLabel,
   distanceLabel,
-  nearbyButton,
+  buttonLabel,
   setpLabel
 }) {
   const [shuffleData, setShuffle] = useState([]);
@@ -97,7 +97,7 @@ function NearbyCities({
               onClick={handleRefresh}
               disabled={shuffleData.length <= 4}
             >
-              {nearbyButton} <RefreshIcon color={theme?.colors?.text?.primary || "#fff"} />
+              {buttonLabel} <RefreshIcon color={theme?.colors?.text?.primary || "#fff"} />
             </NearbyCitiesButton>
           )}
         </NearbyCitiesHeader>

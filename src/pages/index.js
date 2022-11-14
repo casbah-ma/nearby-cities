@@ -12,7 +12,7 @@ const props = {
   distanceLabel: "Distance",
   linkLabel: "Get Direction",
   setpLabel: "Step",
-  nearbyButton: "Refresh"
+  buttonLabel: "Refresh"
   
 };
 
