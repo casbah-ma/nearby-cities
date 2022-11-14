@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { getSafe, shuffle } from "../../helpers";
 import { getDistance } from "geolib";
 import Provider from "../Provider";
+import { NoDataFound } from "../Lottiefiles";
 
 function NearbyCities({
   theme,
@@ -25,9 +26,11 @@ function NearbyCities({
   longitude,
   linkLabel,
   distanceLabel,
+  buttonLabel,
+  setpLabel
 }) {
   const [shuffleData, setShuffle] = useState([]);
-  const APIURL = `https://en.wikipedia.org/w/api.php?action=query&generator=geosearch&ggsradius=10000&ggscoord=${latitude}|${longitude}&format=json&prop=coordinates|pageimages|description|info&pithumbsize=1000&ggslimit=100`
+  const APIURL = `https://en.wikipedia.org/w/api.php?origin=*&action=query&generator=geosearch&ggsradius=10000&ggscoord=${latitude}|${longitude}&format=json&prop=coordinates|pageimages|description|info&pithumbsize=1000&ggslimit=100`;
   // Sort the data by distance
   const sortData = (data) => {
     const sortedData = data.sort((a, b) => {
@@ -39,24 +42,37 @@ function NearbyCities({
   useEffect(() => {
     fetch(APIURL)
       .then((response) => response.json())
-      .then(async ( {query} ) => {
+      .then(async ({ query }) => {
         let data = [];
         for (let key in query.pages) {
           data.push(query.pages[key]);
         }
 
         if (data.length > 0) {
-          const DistanceFromHotel =  data.map((item, i) => {
-            const distance = getSafe(() =>
-              getDistance({latitude: item.coordinates[0].lat, longitude: item.coordinates[0].lon} , { latitude, longitude })
+          const DistanceFromHotel = data
+            .map((item, i) => {
+              const distance = getSafe(() =>
+                getDistance(
+                  {
+                    latitude: item.coordinates[0].lat,
+                    longitude: item.coordinates[0].lon,
+                  },
+                  { latitude, longitude }
+                )
+              );
+              const distanceInKm = distance / 1000;
+              return {
+                ...item,
+                distance: distanceInKm ? distanceInKm : "?",
+                locationUrl:
+                  item?.coordinates &&
+                  `https://www.google.com/maps/search/?api=1&query=${item?.coordinates[0]?.lat},${item?.coordinates[0]?.lon}`,
+              };
+            })
+            .filter(
+              (item) =>
+                item.distance !== "?" && item.thumbnail && item.thumbnail.source
             );
-            const distanceInKm = distance / 1000;
-            return {
-              ...item,
-              distance: distanceInKm ? distanceInKm  : "?",
-              locationUrl: item?.coordinates && `https://www.google.com/maps/search/?api=1&query=${item?.coordinates[0]?.lat},${item?.coordinates[0]?.lon}`,
-            };
-          }).filter(item => item.distance !== "?" && item.thumbnail && item.thumbnail.source);
           setShuffle(shuffle(DistanceFromHotel));
         }
       })
@@ -76,18 +92,23 @@ function NearbyCities({
         <NearbyCitiesHeader>
           <NearbyCitiesTitle>{title}</NearbyCitiesTitle>
           <NearbyCitiesDescription>{description}</NearbyCitiesDescription>
-          <NearbyCitiesButton onClick={handleRefresh}>
-            Refresh <RefreshIcon color={"#fff"} />
-          </NearbyCitiesButton>
+          {shuffleData.length !== 0 && (
+            <NearbyCitiesButton
+              onClick={handleRefresh}
+              disabled={shuffleData.length <= 4}
+            >
+              {buttonLabel} <RefreshIcon color={theme?.colors?.text?.primary || "#fff"} />
+            </NearbyCitiesButton>
+          )}
         </NearbyCitiesHeader>
-        <NearbyCitiesList>
-          {shuffleData.length !== 0 &&
-            sortData(shuffleData.slice(0, 4)).map((item, i) => (
-              <NearbyCitiesListItem key={i}>
+        {shuffleData.length !== 0 ? (
+          <NearbyCitiesList>
+            {sortData(shuffleData.slice(0, 4)).map((item, i) => (
+              <NearbyCitiesListItem key={i} gridAreas={`step${i + 1}`}>
                 <Card
                   theme={theme}
                   size={i === 1 || i === 2 ? "lg" : "sm"}
-                  step={`Step ${i + 1}`}
+                  step={`${setpLabel} ${i + 1}`}
                   title={item.title}
                   image={item.thumbnail}
                   distance={item.distance}
@@ -97,7 +118,10 @@ function NearbyCities({
                 />
               </NearbyCitiesListItem>
             ))}
-        </NearbyCitiesList>
+          </NearbyCitiesList>
+        ) : (
+          <NoDataFound />
+        )}
       </NearbyCitiesContainer>
     </Provider>
   );
