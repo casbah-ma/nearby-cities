@@ -42,7 +42,7 @@ export const NearbyCitiesList = styled.div(({ theme }) => [
     @media (max-width: 768px) {
       grid-template-columns: 21rem 22rem !important;
     }
-    @media (max-width: 425px) {
+    @media (max-width: 767px) {
       grid-template-columns: 100% !important;
       grid-template-rows: 30.625rem 32.625rem 32.625rem 30.625rem !important;
       grid-template-areas:
