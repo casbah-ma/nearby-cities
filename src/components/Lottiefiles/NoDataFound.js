@@ -6,7 +6,7 @@ export default function NoDataFound() {
       autoplay
       loop
       src="https://assets8.lottiefiles.com/packages/lf20_agnejizn.json"
-      style={{ height: "500px", width: "500px" }}
+      style={{ height: "500px"}}
     />
   );
 }

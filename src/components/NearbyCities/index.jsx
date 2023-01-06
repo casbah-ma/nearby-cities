@@ -26,11 +26,12 @@ function NearbyCities({
   longitude,
   linkLabel,
   distanceLabel,
-  buttonLabel,
-  setpLabel
+  nearbyButton,
+  setpLabel,
+  language,
 }) {
   const [shuffleData, setShuffle] = useState([]);
-  const APIURL = `https://en.wikipedia.org/w/api.php?origin=*&action=query&generator=geosearch&ggsradius=10000&ggscoord=${latitude}|${longitude}&format=json&prop=coordinates|pageimages|description|info&pithumbsize=1000&ggslimit=100`;
+  const APIURL = `https://places.api.upoui.com/places?distance_filter=${latitude},${longitude},5000`;
   // Sort the data by distance
   const sortData = (data) => {
     const sortedData = data.sort((a, b) => {
@@ -42,10 +43,10 @@ function NearbyCities({
   useEffect(() => {
     fetch(APIURL)
       .then((response) => response.json())
-      .then(async ({ query }) => {
+      .then(async (query) => {
         let data = [];
-        for (let key in query.pages) {
-          data.push(query.pages[key]);
+        for (let key in query.data) {
+          data.push(query.data[key]);
         }
 
         if (data.length > 0) {
@@ -54,8 +55,8 @@ function NearbyCities({
               const distance = getSafe(() =>
                 getDistance(
                   {
-                    latitude: item.coordinates[0].lat,
-                    longitude: item.coordinates[0].lon,
+                    latitude: item.location.coordinates[1],
+                    longitude: item.location.coordinates[0],
                   },
                   { latitude, longitude }
                 )
@@ -65,14 +66,11 @@ function NearbyCities({
                 ...item,
                 distance: distanceInKm ? distanceInKm : "?",
                 locationUrl:
-                  item?.coordinates &&
-                  `https://www.google.com/maps/search/?api=1&query=${item?.coordinates[0]?.lat},${item?.coordinates[0]?.lon}`,
+                  item?.location.coordinates &&
+                  `https://www.google.com/maps/search/?api=1&query=${item?.location.coordinates[1]},${item?.location.coordinates[0]}`,
               };
             })
-            .filter(
-              (item) =>
-                item.distance !== "?" && item.thumbnail && item.thumbnail.source
-            );
+            .filter((item) => item.media[0].url && item.distance !== "?");
           setShuffle(shuffle(DistanceFromHotel));
         }
       })
@@ -85,7 +83,6 @@ function NearbyCities({
   const handleRefresh = () => {
     setShuffle([...shuffle(shuffleData)]);
   };
-
   return (
     <Provider theme={theme}>
       <NearbyCitiesContainer data-testid="NearbyCities">
@@ -97,7 +94,8 @@ function NearbyCities({
               onClick={handleRefresh}
               disabled={shuffleData.length <= 4}
             >
-              {buttonLabel} <RefreshIcon color={theme?.colors?.text?.primary || "#fff"} />
+              {nearbyButton}{" "}
+              <RefreshIcon color={theme?.colors?.text?.primary || "#fff"} />
             </NearbyCitiesButton>
           )}
         </NearbyCitiesHeader>
@@ -109,8 +107,8 @@ function NearbyCities({
                   theme={theme}
                   size={i === 1 || i === 2 ? "lg" : "sm"}
                   step={`${setpLabel} ${i + 1}`}
-                  title={item.title}
-                  image={item.thumbnail}
+                  title={language ? item.title[language] : item.title["en"]}
+                  image={item.media[0].url}
                   distance={item.distance}
                   distanceLabel={distanceLabel}
                   linkLabel={linkLabel}

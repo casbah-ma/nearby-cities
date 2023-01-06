@@ -16,7 +16,7 @@ export const CardContent = styled.section(({}) => [
 ]);
 
 export const CardTitle = styled.h2(({ theme }) => [
-  tw`text-2xl font-bold`,
+  tw`text-2xl font-bold capitalize`,
   `font-family: ${theme?.fontFamily?.primary}`,
 ]);
 
