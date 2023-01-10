@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import prependHttp from 'prepend-http';
 import {
   CarouselContainer,
   CarouselDots,
@@ -20,7 +20,7 @@ function Carousel({ image }) {
   return (
     <CarouselContainer>
       <ActiveDot />
-      <CarouselImage src={image?.source} />
+      <CarouselImage src={prependHttp(image)} />
     </CarouselContainer>
   );
 }
